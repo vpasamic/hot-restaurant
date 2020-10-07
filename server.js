@@ -56,6 +56,6 @@ app.post("/api/newtable",function(req,res){
 
 });
 
-app.listen(PORT,function()){
+app.listen(PORT,function(){
     console.log("app listening on Port " + PORT)
-}
+})
