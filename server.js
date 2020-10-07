@@ -38,8 +38,8 @@ app.get("/", (req, res) => {
 app.get("/tables", (req, res) => {
     res.sendFile(path.join(__dirname, "tables.html"));
 });
-app.get("/reserve", (req, res) => {
-    res.sendFile(path.join(__dirname, "reserve.html"));
+app.get("/reserves", (req, res) => {
+    res.sendFile(path.join(__dirname, "reserves.html"));
 });
 
 app.get("/api/tables", function (req, res){
@@ -54,7 +54,7 @@ app.get("/api/", function (req,res){
 })
 app.post("/api/newtable",function(req,res){
     let newtable = req.body;
-    if (reservations.length<5){
+    if (reservations.length<6){
         reservations.push(newtable)
     }else{
         waitlist.push(newtable)
