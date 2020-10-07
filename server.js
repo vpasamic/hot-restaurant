@@ -13,16 +13,22 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //set up variable
-let reservations=[
-    {
-    name:"dragon",
-    id:"something",
-    number:123456,
-    }
-
-];
-let waitlist=[];
-
+let tables = {
+    reservations:[
+        {
+        name:"dragon",
+        id:"something",
+        number:123456,
+        }
+    ],
+    waitlist:[
+        {
+            name:"dinosaur",
+            id:"something",
+            number:123456,
+            }
+    ],
+}
 
 
 // Basic route that sends the user first to the AJAX Page
@@ -37,13 +43,15 @@ app.get("/reserve", (req, res) => {
 });
 
 app.get("/api/tables", function (req, res){
-    res.json(reservations)
+    res.json(tables.reservations)
 })
 
 app.get("/api/waitlist", function (req,res){
-    res.json(waitlist)
+    res.json(tables.waitlist)
 })
-
+app.get("/api/", function (req,res){
+    res.json(tables)
+})
 app.post("/api/newtable",function(req,res){
     let newtable = req.body;
     if (reservations.length<5){
