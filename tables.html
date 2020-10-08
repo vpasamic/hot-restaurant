@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
 </head>
 
 <body>
@@ -20,20 +21,14 @@
             <a href="/reserves"><button class="btn btn-danger btn-lg"><span
                   class="fa fa-eye"></span> Make Reservation</button></a>
           </div>
-
-        <div class="card">
-            <div class="card-header">
-                <h3><strong>Character Statistics</strong></h3>
-            </div>
-            <div class="card-body">
-                <h2 id="name">Yoda</h2>
-                <div id="stats">
-                    <h3><strong>Role:</strong> <span id="role">Jedi Master</span></h3>
-                    <h3><strong>Age:</strong> <span id="age">900</span></h3>
-                    <h3><strong>Force Points:</strong> <span id="force-points">2000</span></h3>
-                </div>
-            </div>
+        <div class="reserves">
+            <h2>reservations</h2>
         </div>
+        <div class= "waitlist">
+            <h2>Waitlist</h2>
+
+        </div>
+    
 
 
         </div>
@@ -45,10 +40,27 @@
 
 
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIza
-    
+   
+    <script type="text/javascript">
+        $.get("/api/", function(tables){
+            let reserves=$(".reserves");
+            let waitlisted=$(".waitlist");
+            for (var i = 0; i< tables.reservations.length;i++){
+                var card = $("<div>").addClass("card");
+                var name = tables.reservations[i].name;
+                console.log(name)
+                card.html("<div><h3>"+name+"</h3></div>")
+                reserves.append(card)
+            };
+            for (var x=0; x<tables.waitlist.length;x++){
+                var waitcard = $("<div>").addClass("card");
+                var waitname = tables.waitlist[x].name;
+                console.log(waitname)
+                waitcard.html("<div><h3>"+waitname+"</h3></div>")
+                waitlisted.append(waitcard)
+            };
+        });
+    </script>
+
 </body>
 </html>

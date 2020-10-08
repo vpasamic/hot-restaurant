@@ -54,7 +54,7 @@ app.get("/api/", function (req,res){
 })
 app.post("/api/newtable",function(req,res){
     let newtable = req.body;
-        if (tables.reservations.length<6) {
+        if (tables.reservations.length<5) {
             tables.reservations.push(newtable);
             res.json(tables.reservations);
             return res.json(true)
