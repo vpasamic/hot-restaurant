@@ -39,12 +39,8 @@
                 <input type="text" class="form-control" id="phone">
               </div>
               <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" class="form-control" id="age">
-              </div>
-              <div class="form-group">
                 <label for="unique-id">Unique ID</label>
-                <input type="text" class="form-control" id="force-points">
+                <input type="text" class="form-control" id="id">
               </div>
             </form>
             <br>
@@ -64,5 +60,39 @@
     </div>
   </footer>
 </div>
+
+
+<script type="text/javascript">
+
+  $(".submit").on("click", function(){
+    var newreserve= {
+      name: $("#name").val().trim(),
+      phone: $("#phone").val().trim(),
+      id: $("#id").val().trim(),
+    };
+    console.log(newReservation);
+    var currentURL = window.location.origin;
+      $.post(currentURL + "/api/newtable", newReservation,
+      function(data) {
+        if(data === true){
+          alert("Yay! You are officially booked!")
+        }
+        if(data === false){
+          alert("Sorry you are on the wait list")
+        }
+        $("#name").val("");
+        $("#phone").val("");
+        $("#id").val("");
+
+      });
+
+return false;
+
+});
+
+</script>
+
+
+
 </body>
 </html>
