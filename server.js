@@ -23,10 +23,10 @@ let tables = {
     ],
     waitlist:[
         {
-            name:"dinosaur",
-            id:"something",
-            number:123456,
-            }
+        name:"dinosaur",
+        id:"something",
+        number:123456,
+    }
     ],
 }
 
@@ -57,10 +57,12 @@ app.post("/api/newtable",function(req,res){
         if (tables.reservations.length<6) {
             tables.reservations.push(newtable);
             res.json(tables.reservations);
+            return res.json(true)
         }else {
             tables.waitlist.push(newtable);
             res.json(tables.waitlist)
-        }
+            return res.json(false)
+        }   
    
 });
 
