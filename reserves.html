@@ -70,9 +70,9 @@
       number: $("#number").val().trim(),
       id: $("#id").val().trim(),
     };
-    console.log(newReservation);
+    console.log(newreserve);
     var currentURL = window.location.origin;
-      $.post(currentURL + "/api/newtable", newReservation,
+      $.post( "/api/newtable", newreserve,
       function(data) {
         if(data === true){
           alert("Yay! You are officially booked!")
